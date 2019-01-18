@@ -84,11 +84,12 @@ def predict_fn(input_data, model):
     data = data.to(device)
 
     # Make sure to put the model into evaluation mode
+    
     model.eval()
 
     # TODO: Compute the result of applying the model to the input data. The variable `result` should
     #       be a numpy array which contains a single integer which is either 1 or 0
-
-    result = np.round(output.numpy())
+    output=model(data)
+    result = (output.data).cpu().numpy().round()
 
     return result
